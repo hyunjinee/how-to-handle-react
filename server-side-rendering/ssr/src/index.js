@@ -1,13 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+const koa = require('koa');
 
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
 
-    <BrowserRouter><App /></BrowserRouter>
-,
-  document.getElementById('root')
-);
 
+
+const app = new Koa();
+
+
+app.use((ctx, next)=> {
+  console.log(ctx.url);
+  console.log(1);
+  next();
+})
+
+
+app.use((ctx, next) => {
+  console.log(2);
+  next();
+})
+
+
+
+app.use(ctx => {
+  ctx.body = 'hello world';
+})
+
+
+
+
+app.listen(4000, () => {
+  console.log('Listening to port 4000')
+})
